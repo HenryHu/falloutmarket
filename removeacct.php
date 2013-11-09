@@ -4,11 +4,9 @@ include_once 'session.php';
 
 verify_session();
 
-if (!isset($_GET['id'])) {
-    jump_to('index.php');
-}
+include_once 'util.php';
 
-$acctid = $_GET['id'];
+$acctid = get_arg('id');
 
 include_once 'conn.php';
 $conn = db_connect();

@@ -12,7 +12,8 @@ verify_session();
     </head>
     <body>
         <h1>Dashboard</h1>
-        <h3>Welcome, <?php echo session_user(); ?></h3>
+        <h3>Welcome, <?php echo session_user(); ?> <a href='logout.php'>Logout</a> </h3>
+        <h2>Personal Information</h2>
         <ul>
             <li>
                 <a href='addressbook.php'>Addressbook</a>
@@ -20,12 +21,22 @@ verify_session();
             <li>
                 <a href='myaccounts.php'>My accounts</a>
             </li>
+        </ul>
+        <h2>Buyer</h2>
+        <ul>
             <li>
                 <a href='myorders.php'>My orders</a>
             </li>
             <li>
-                <a href='logout.php'>Logout</a>
+                <a href='mycmts.php'>My comments</a>
             </li>
         </ul>
+        <h2>Seller</h2>
+        <ul>
+            <li>
+                <a href='mycontracts.php'>My contracts</a>
+            </li>
+        </ul>
+        <p/>
     </body>
 </html>
