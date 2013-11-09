@@ -1,7 +1,11 @@
 <?php
 
 function jump_to($url) {
-    echo '<script type="text/javascript">window.location="' . $url . '";</script>';
+    echo '<p/><h3>Please wait...</h3>';
+    echo '<script type="text/javascript">
+        setTimeout(function() {
+            window.location="' . $url . '";
+        }, 1000);</script>';
 }
 
 ?>

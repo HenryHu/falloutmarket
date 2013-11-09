@@ -4,6 +4,10 @@ include_once 'session.php';
 
 verify_session();
 
+if (!isset($_GET['id'])) {
+    jump_to('index.php');
+}
+
 $addrid = $_GET['id'];
 
 include_once 'conn.php';

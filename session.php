@@ -23,7 +23,7 @@ function session_user() {
 }
 
 function session_userid() {
-    return $_SESSION['userid'];
+    return intval($_SESSION['userid']);
 }
 
 ?>
