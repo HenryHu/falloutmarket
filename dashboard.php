@@ -15,6 +15,15 @@ verify_session();
         <h3>Welcome, <?php echo session_user(); ?></h3>
         <ul>
             <li>
+                <a href='addressbook.php'>Addressbook</a>
+            </li>
+            <li>
+                <a href='myaccounts.php'>My accounts</a>
+            </li>
+            <li>
+                <a href='myorders.php'>My orders</a>
+            </li>
+            <li>
                 <a href='logout.php'>Logout</a>
             </li>
         </ul>

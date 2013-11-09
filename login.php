@@ -11,14 +11,11 @@ if (!array_key_exists('username', $_POST) || !array_key_exists('password', $_POS
 
 $conn = db_connect();
 
-$chk_user = oci_parse($conn,
-    'select userid, name from users where username = :username and password = :password');
+$chk_user = db_bind_exe($conn,
+    'select userid, name from users where username = :username and password = :password',
+    array('username' => $_POST['username'], 'password' => $_POST['password']));
 
-oci_bind_by_name($chk_user, ':username', $_POST['username']);
-oci_bind_by_name($chk_user, ':password', $_POST['password']);
-oci_execute($chk_user);
-
-$ret = oci_fetch_row($chk_user);
+$ret = db_fetch_row($chk_user);
 
 if ($ret) {
     echo "<h3>Login OK</h3>";
@@ -28,5 +25,7 @@ if ($ret) {
     echo "<h3>Invalid username or password</h3>";
     echo "<a href='index.php'>Try again</a>";
 }
+
+db_close($conn);
 
 ?>

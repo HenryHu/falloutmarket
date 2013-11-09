@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 'On');
 
 include_once 'util.php';
 
@@ -19,6 +20,10 @@ function session_init($userid, $name) {
 
 function session_user() {
     return $_SESSION['name'];
+}
+
+function session_userid() {
+    return $_SESSION['userid'];
 }
 
 ?>
