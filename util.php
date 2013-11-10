@@ -61,4 +61,8 @@ function rating_stars($score) {
         str_repeat('<img src="img/nstar.png" width=12 height=12/>', 5-$score);
 }
 
+function valid_date($str) {
+    return preg_match("/^[0-9]{4}-(0[0-9]|1[0-2])-[0-3][0-9]$/", $str);
+}
+
 ?>

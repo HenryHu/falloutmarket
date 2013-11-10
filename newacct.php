@@ -8,6 +8,7 @@ verify_session();
 
 <?php
 
+include_once 'util.php';
 if (!isset($_POST['act_number']) || !isset($_POST['valid_before'])) {
 ?>
 
@@ -29,6 +30,8 @@ if (!isset($_POST['act_number']) || !isset($_POST['valid_before'])) {
 
 <?php
 } else {
+    check(preg_match("/^[0-9]{16}$/", $_POST['act_number']), "Invalid account number", "newacct.php");
+    check(valid_date($_POST['valid_before']), "Invalid date", "newacct.php");
     include_once 'conn.php';
     $conn = db_connect();
     $stmt = db_bind_exe($conn, 'insert into accounts (userid, acctid, act_number, valid_before) values (:userid, acctid_seq.nextval, :act_number, TO_DATE(:valid_before, \'YYYY-MM-DD\'))', array('userid' => session_userid(), 'act_number' => $_POST['act_number'], 'valid_before' => $_POST['valid_before']));
