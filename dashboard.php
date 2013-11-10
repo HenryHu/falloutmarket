@@ -23,7 +23,7 @@ verify_session();
 <div class="container">
 <div class="col-md-12">
         <h1>Dashboard</h1>
-        <h3>Welcome, <?php echo session_user(); ?> <a href='logout.php'>Logout</a> </h3>
+        <h3>Welcome, <?php echo session_user(); ?> <a href='logout.php' class="btn btn-lg">Logout</a> </h3>
 <div class="col-md-4">
         <h2>Personal Information</h2>
 <div class="col-md-12">

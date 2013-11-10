@@ -26,8 +26,14 @@ $oid = get_arg('id');
         <div class="container">
         <h1>Order Detail</h1>
 <div class="col-md-2">
-<h3><a href='myorders.php'>My Orders</a></h3>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+<div class="navbar">
+<div class="navbar-inner">
+<ul class="nav" style="font-size: 18pt;">
+<li><a href='myorders.php'>My Orders</a></li>
+<li><a href='dashboard.php'>Dashboard</a></li>
+</ul>
+</div>
+</div>
 </div>
 <div class="col-md-10">
         <table class="table">

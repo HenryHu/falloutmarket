@@ -87,11 +87,9 @@ echo '<p/>';
 echo 'Buy ' . $qty . ' ' . $good_name . ' from ' . $seller . '(' . $seller_username . '), ' . $price . ' dollar(s) each.<br/>';
 ?>
 
-        <h3>Ship to:</h3>
+        <h3>Ship to address:</h3>
         <table class="table">
-            <tr><th></th><th>Address</th></tr>
 <?php
-
 include_once 'conn.php';
 
 $first = true;
@@ -101,13 +99,12 @@ $stmt = db_bind_exe($conn, 'select address, addrid from addresses where userid =
 
 while ($ret = db_fetch_object($stmt)) {
     echo '<tr>';
-    echo '<td><input type="radio" name="addrid" value="' . $ret->ADDRID . '"';
+    echo '<td><label class="btn"><input style="margin-right: 20px;" type="radio" name="addrid" value="' . $ret->ADDRID . '"';
     if ($first) {
         echo ' checked="yes"';
         $first = false;
     }
-    echo '/></td>';
-    echo '<td>' . $ret->ADDRESS . '</td>';
+    echo '/>' . $ret->ADDRESS . '</label></td>';
     echo '</tr>';
 }
 
@@ -121,9 +118,8 @@ db_close($conn);
 echo '<p/>';
 echo 'You will be charged for ' . $charge . ' dollar(s).';
 ?>
-        <h3>Charge from:</h3>
+        <h3>Charge from account:</h3>
         <table class="table">
-            <tr><th></th><th>Account</th></tr>
 <?php
 
 include_once 'conn.php';
@@ -135,13 +131,12 @@ $stmt = db_bind_exe($conn, 'select act_number, valid_before, acctid from account
 $first = true;
 while ($ret = db_fetch_object($stmt)) {
     echo '<tr>';
-    echo '<td><input type="radio" name="acctid" value="' . $ret->ACCTID . '"';
+    echo '<td><label class="btn"><input style="margin-right: 20px;" type="radio" name="acctid" value="' . $ret->ACCTID . '"';
     if ($first) {
         echo ' checked="yes"';
         $first = false;
     }
-    echo '/></td>';
-    echo '<td>' . $ret->ACT_NUMBER . '</td>';
+    echo '/>' . $ret->ACT_NUMBER . '</label></td>';
     echo '</tr>';
 }
 
