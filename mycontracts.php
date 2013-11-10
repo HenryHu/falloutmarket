@@ -63,7 +63,8 @@ while ($ret = db_fetch_object($stmt)) {
         $end = 'never';
     echo '<td>' . $end . '</td><td>' . $ret->SOLD . '</td>';
     echo '<td>' . ($ret->QTY - $ret->SOLD) . '</td>';
-    echo '<td><a href="contractdetail.php?id=' . $ret->CID . '" class="btn">Detail</a></td>';
+    echo '<td><a href="contractdetail.php?id=' . $ret->CID . '" class="btn">Detail</a>';
+    echo '<a href="endcontract.php?cid=' . $ret->CID . '" class="btn btn-default">Terminate</a></td>';
     echo '</tr>';
 }
 
