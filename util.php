@@ -57,8 +57,13 @@ function is_not_empty($stmt, $args) {
 }
 
 function rating_stars($score) {
-    return str_repeat('<img src="img/star.png" width=12 height=12/>', $score) .
-        str_repeat('<img src="img/nstar.png" width=12 height=12/>', 5-$score);
+    return
+        '<div style="display: inline-block;">' .
+        '<div style="background-size: auto 100%; display:block; width: 80; height: 16px; background-image: url(img/5nstar.png)";>' .
+        '<div style="background-size: auto 100%; display: block; background-image: url(img/5star.png); height: 16px; width: ' . ($score * 20) . '%;">' .
+        '</div></div></div>';
+/*    return str_repeat('<img src="img/star.png" width=16 height=16/>', $score) .
+    str_repeat('<img src="img/nstar.png" width=16 height=16/>', 5-$score);*/
 }
 
 function valid_date($str) {

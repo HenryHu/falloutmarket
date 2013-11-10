@@ -122,9 +122,9 @@ if (isset($_GET['mode'])) {
             $minprice = $ret->MIN_PRICE;
         }
         if ($ret->AVG_RATING != 0) {
-            $avg_rating = $ret->AVG_RATING;
+            $avg_rating = rating_stars($ret->AVG_RATING);
         }
-        echo '<tr><td>' . $ret->ANAME . '</td><td>' . $avail . '</td>';
+        echo '<tr><td><a href="goodinfo.php?gid=' . $ret->AGID . '">' . $ret->ANAME . '</a></td><td>' . $avail . '</td>';
     echo '<td>' . $minprice . '</td><td>' . $avg_rating . '</td><td>' . $ret->AGE_LIMIT . '</td>';
         echo '<td><a href=\'sellgood.php?gid=' . $ret->AGID . '\' class="btn btn-default">Sell</a></td>';
         echo '</tr>';

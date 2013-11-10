@@ -14,7 +14,7 @@ function print_product_info($gid) {
     while ($ret = db_fetch_object($stmt)) {
         $avg_rating = 'N/A';
         if ($ret->AVG_RATING != 0) {
-            $avg_rating = $ret->AVG_RATING;
+            $avg_rating = rating_stars($ret->AVG_RATING);
         }
         $age_limit = 'No';
         if ($ret->AGE_LIMIT != 0) {
