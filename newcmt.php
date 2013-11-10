@@ -16,8 +16,17 @@ if (!isset($_POST['rating']) || !isset($_POST['content'])) {
 <html>
     <head>
         <title>New Comment</title>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     </head>
     <body>
+<div class="container">
         <h1>New Comment</h1>
         <h3>Write new comment for: </h3>
 <?php
@@ -30,17 +39,20 @@ print_product_info($gid);
         <p/>
         <form action="newcmt.php?gid=<?php echo $gid; ?>" method="POST">
             Rating:
-            <input type="radio" name="rating" value="1">1</input>
-            <input type="radio" name="rating" value="2">2</input>
-            <input type="radio" name="rating" value="3">3</input>
-            <input type="radio" name="rating" value="4">4</input>
-            <input type="radio" name="rating" value="5" checked="yes">5</input>
-            <br/>
+<div class="btn-group">
+            <label class="btn btn-default">1<input type="radio" name="rating" value="1"></input></label>
+            <label class="btn btn-default">2<input type="radio" name="rating" value="2"></input></label>
+            <label class="btn btn-default">3<input type="radio" name="rating" value="3"></input></label>
+            <label class="btn btn-default">4<input type="radio" name="rating" value="4"></input></label>
+            <label class="btn btn-default">5<input type="radio" name="rating" value="5" checked="yes"></input></label>
+</div>
+            <p/>
             Comment:<br/>
-            <textarea name="content"></textarea><br/>
-            <input type="submit" value="Submit"/>
+            <textarea name="content" class="form-control"></textarea><br/>
+            <input type="submit" value="Submit" class="btn btn-lg btn-primary"/>
         </form>
 <h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
     </body>
 </html>
 

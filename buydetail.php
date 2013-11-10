@@ -50,27 +50,45 @@ while ($ret = db_fetch_object($stmt)) {
 <html>
     <head>
         <title>Buy product</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
     </head>
     <body>
+<div class="container">
+<div class="col-md-12">
         <h1>Order detail</h1>
+</div>
 <form action="buyconfirm.php" method="POST">
 <?php
 echo '<input type="hidden" name="cid" value="' . $cid . '"/>';
 echo '<input type="hidden" name="qty" value="' . $qty . '"/>';
 ?>
+<div class="row">
+<div class="col-md-6">
 <?php
 include_once 'info.php';
 
 print_product_info($gid);
 ?>
+</div>
         
+</div>
+<div class="col-md-12">
+<div class="col-md-6">
 <?php
 echo '<p/>';
 echo 'Buy ' . $qty . ' ' . $good_name . ' from ' . $seller . '(' . $seller_username . '), ' . $price . ' dollar(s) each.<br/>';
 ?>
 
         <h3>Ship to:</h3>
-        <table>
+        <table class="table">
             <tr><th></th><th>Address</th></tr>
 <?php
 
@@ -97,12 +115,14 @@ db_close($conn);
 ?>
         </table>
 
+</div>
+<div class="col-md-6">
 <?php
 echo '<p/>';
 echo 'You will be charged for ' . $charge . ' dollar(s).';
 ?>
         <h3>Charge from:</h3>
-        <table>
+        <table class="table">
             <tr><th></th><th>Account</th></tr>
 <?php
 
@@ -128,8 +148,11 @@ while ($ret = db_fetch_object($stmt)) {
 db_close($conn);
 ?>
         </table>
-<input type="submit" value="Place order"/>
+</div>
+<input type="submit" value="Place order" class="btn btn-primary btn-lg"/>
+</div>
 
 </form>
+</div>
     </body>
 </html>

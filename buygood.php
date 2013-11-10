@@ -11,16 +11,34 @@ $gid = get_arg('id');
 <html>
     <head>
         <title>Buy product</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
     </head>
     <body>
+<div class="container">
+<div class="col-md-12">
         <h1>Purchase</h1>
+</div>
+<div class="container">
+<div class="col-md-10">
+<div class="col-md-6">
 <?php
 include_once 'info.php';
 
 print_product_info($gid);
 ?>
+</div>
+</div>
+<div class="col-md-10">
         <h3>This product is available from:</h3>
-        <table>
+        <table class="table">
             <tr><th>Seller</th><th>Price</th><th>Available</th><th></th></tr>
 <?php
 
@@ -49,12 +67,15 @@ while ($ret = db_fetch_object($stmt)) {
     echo '<td><a href="sellerinfo.php?uid=' . $ret->USERID . '">' . $ret->NAME . '(' . $ret->USERNAME . ')</a></td>';
     echo '<td>' . $ret->PRICE . '</td>';
     echo '<td>' . $ret->CONTRACT_LEFT . '</td>';
-    echo '<td><form action="buydetail.php?cid=' . $ret->CID . '&gid=' . $gid . '" method="POST"><input type="text" name="qty" value="1"/><input type="submit" value="Buy"/></form></td>';
+    echo '<td><form action="buydetail.php?cid=' . $ret->CID . '&gid=' . $gid . '" method="POST"><input type="text" name="qty" value="1"/><input type="submit" value="Buy" class="btn btn-default"/></form></td>';
     echo '</tr>';
 }
 ?>
         </table>
+</div>
+</div>
 <h3><a href='buy.php'>Buy something else</a></h3>
 <h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
     </body>
 </html>

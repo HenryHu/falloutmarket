@@ -15,16 +15,28 @@ if (!isset($_POST['act_number']) || !isset($_POST['valid_before'])) {
 <html>
     <head>
         <title>New account</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
     </head>
     <body>
+<div class="container">
         <h1>Please enter your new account: </h3>
         <form action='newacct.php' method='POST'>
-<table>
-<tr><th>Account number: </th><td><input type='text' name='act_number'/></td></tr>
-<tr><th>Valid before(YYYY-MM-DD): </th><td><input type='text' name='valid_before'/></td></tr>
+<table class="table">
+<tr><th>Account number: </th><td><input type='text' name='act_number'/ class="form-control"></td></tr>
+<tr><th>Valid before(YYYY-MM-DD): </th><td><input type='text' name='valid_before' class="form-control"/></td></tr>
 </table>
-            <input type='submit' value='Add'/>
+            <input type='submit' value='Add' class="btn btn-primary btn-lg"/>
         </form>
+<h3><a href="myaccounts.php">My Accounts</a></h3>
+</div>
     </body>
 </html>
 

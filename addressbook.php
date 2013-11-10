@@ -9,12 +9,29 @@ verify_session();
 <html>
     <head>
         <title>Addressbook</title>
-    </head>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+   </head>
     <body>
-        <h1>Addressbook</title>
+<div class="container">
+<div class="col-md-12">
+        <h1>Addressbook</h1>
+</div>
+<div class="col-md-2">
+<h3><a href='newaddr.php'>New Address</a></h3>
+<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
         <h3>Your addresses: </h3>
-        <table>
-            <tr> <th> Address </th> <th> Action </th> </tr>
+<div class="col-md-10">
+        <table class="table">
+            <tr> <th> Address </th> <th> </th> </tr>
 <?php
 include_once 'conn.php';
 
@@ -23,15 +40,15 @@ $stmt = db_bind_exe($conn, 'select addrid, address from addresses where userid =
 
 while ($ret = db_fetch_row($stmt)) {
     echo '<tr><td>' . $ret[1] . '</td>'; //<td>' . $ret[1] . '</td>';
-    echo '<td><a href="removeaddr.php?id=' . $ret[0] . '">Remove</a></td>';
+    echo '<td><a href="removeaddr.php?id=' . $ret[0] . '" class="btn btn-default">Remove</a></td>';
     echo '</tr>';
 }
 
 db_close($conn);
 ?>
 </table>
+</div>
+</div>
 
-<h3><a href='newaddr.php'>New Address</a></h3>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
     </body>
 </html>

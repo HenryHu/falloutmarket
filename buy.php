@@ -9,16 +9,28 @@ verify_session();
 <html>
     <head>
         <title>Shopping</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
     </head>
     <body>
+<div class="container">
+<div class="col-md-12">
         <h1>Shopping</h1>
+<div class="col-md-11">
         <h3>I want to ...</h3>
         <ul>
             <li><a href='buy.php?mode=viewall'>View the list of products available.</a></li>
             <li>Search for a specific item.
                 <form action='buy.php?mode=search' method='POST'>
-                    Search for: <input type='text' name='q' />
-                    <input type='submit' value='Search' />
+                    <table class="table"><tr><th>Search for: </th><td><input type='text' name='q' class="form-control"/></td>
+                    <td><input type='submit' value='Search' class="btn btn-primary"/></td></tr></table>
                 </form>
         </ul>
 <?php
@@ -80,7 +92,8 @@ if (isset($_GET['mode'])) {
 
     }
 ?>
-        <table border="1">
+<div class="col-md-12">
+        <table class="table">
             <tr><th>Product</th><th>Available</th><th>Minimal Price</th><th>Average Rating</th><th></th></tr>
 <?php
     while ($ret = db_fetch_object($stmt)) {
@@ -90,7 +103,7 @@ if (isset($_GET['mode'])) {
         }
         echo '<tr><td><a href="goodinfo.php?gid=' . $ret->GID . '">' . $ret->NAME . '</a></td><td>' . $ret->AVAILABLE . '</td>';
     echo '<td>' . $ret->MIN_PRICE . '</td><td>' . $avg_rating . '</td>';
-        echo '<td><a href=\'buygood.php?id=' . $ret->GID . '\'>Buy</a></td>';
+        echo '<td><a href=\'buygood.php?id=' . $ret->GID . '\' class="btn btn-default">Buy</a></td>';
         echo '</tr>';
     }
 
@@ -98,9 +111,13 @@ if (isset($_GET['mode'])) {
 
 ?>
         </table>
+</div>
+</div>
 <?php
 }
 ?>
 <h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+</div>
     </body>
 </html>

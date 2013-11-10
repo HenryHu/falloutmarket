@@ -19,24 +19,40 @@ if (!isset($_POST['name']) || !isset($_POST['password']) || !isset($_POST['age']
 <html>
     <head>
         <title>My Information</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+
     </head>
     <body>
+<div class="container">
         <h1>My Information</h1>
+<div class="col-md-2">
+<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+<div class="col-md-10">
         <h3>Change information: </h3>
 
         <form action="myinfo.php" method="POST">
-            <table>
+            <table class="table">
             <tr><th>Username: </th><td><?php echo $ret->USERNAME; ?> </td></tr>
             <tr><th>Password:</th><td>
-            <input type="password" name="password" value="<?php echo $ret->PASSWORD; ?>"/></td><tr/>
+            <input type="password" name="password" value="<?php echo $ret->PASSWORD; ?>" class="form-control"/></td><tr/>
             <tr><th>Name: </th><td>
-            <input type="text" name="name" value="<?php echo $ret->NAME; ?>"/></td><tr/>
+            <input type="text" name="name" value="<?php echo $ret->NAME; ?>" class="form-control"/></td><tr/>
             <tr><th>Age:</th><td>
-            <input type="text" name="age" value="<?php echo $ret->AGE; ?>"/></td><tr/>
+            <input type="text" name="age" value="<?php echo $ret->AGE; ?>" class="form-control"/></td><tr/>
             </table>
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Update" class="btn btn-lg btn-primary"/>
         </form>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+</div>
     </body>
 </html>
 

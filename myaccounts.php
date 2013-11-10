@@ -9,12 +9,27 @@ verify_session();
 <html>
     <head>
         <title>My Accounts</title>
-    </head>
+         <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+   </head>
     <body>
+<div class="container">
         <h1>Account list</h1>
+<div class="col-md-2">
+<h3><a href='newacct.php'>New Account</a></h3>
+<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+<div class="col-md-10">
         <h3>Your accounts: </h3>
-        <table>
-            <tr> <th> Account </th> <th> Valid before </th> <th> Action </th> </tr>
+        <table class="table">
+            <tr> <th> Account </th> <th> Valid before </th> <th> </th> </tr>
 <?php
 include_once 'conn.php';
 
@@ -23,15 +38,14 @@ $stmt = db_bind_exe($conn, 'select acctid, act_number, TO_CHAR(valid_before, \'Y
 
 while ($ret = db_fetch_object($stmt)) {
     echo '<tr><td>' . $ret->ACT_NUMBER . '</td><td>' . $ret->VALID_BEFORE . '</td>';
-    echo '<td><a href="removeacct.php?id=' . $ret->ACCTID . '">Remove</a></td>';
+    echo '<td><a href="removeacct.php?id=' . $ret->ACCTID . '" class="btn btn-default">Remove</a></td>';
     echo '</tr>';
 }
 
 db_close($conn);
 ?>
 </table>
-
-<h3><a href='newacct.php'>New Account</a></h3>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+</div>
     </body>
 </html>

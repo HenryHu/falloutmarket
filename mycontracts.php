@@ -9,11 +9,21 @@ verify_session();
 <html>
     <head>
         <title>My Contracts</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
     </head>
     <body>
+<div class="container">
         <h1>My Current Contracts</h1>
-        <table>
-            <tr> <th> Product </th> <th> Price </th> <th> Quantity </th> <th> Begin </th> <th> End </th> <th> Sold </th> <th> Left </th> <th> Action </th> </tr>
+        <table class="table">
+            <tr> <th> Product </th> <th> Price </th> <th> Quantity </th> <th> Begin </th> <th> End </th> <th> Sold </th> <th> Left </th> <th> </th> </tr>
 <?php
 include_once 'conn.php';
 include_once 'util.php';
@@ -42,7 +52,7 @@ while ($ret = db_fetch_object($stmt)) {
         $end = 'never';
     echo '<td>' . $end . '</td><td>' . $ret->SOLD . '</td>';
     echo '<td>' . ($ret->QTY - $ret->SOLD) . '</td>';
-    echo '<td><a href="contractdetail.php?id=' . $ret->CID . '">Detail</a></td>';
+    echo '<td><a href="contractdetail.php?id=' . $ret->CID . '" class="btn btn-default">Detail</a></td>';
     echo '</tr>';
 }
 
@@ -52,6 +62,7 @@ db_close($conn);
 
 <h3><a href='pastcontracts.php'>Past Contracts</a></h3>
 <h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
     </body>
 </html>
 

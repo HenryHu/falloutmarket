@@ -10,7 +10,7 @@ function print_product_info($gid) {
         select avg(comments.score) avg_rating from comments where comments.gid = :gid
     ) ,goods where goods.gid = :gid', array('gid' => $gid));
 
-    echo '<table>';
+    echo '<table class="table">';
     while ($ret = db_fetch_object($stmt)) {
         $avg_rating = 'N/A';
         if ($ret->AVG_RATING != 0) {
@@ -39,7 +39,7 @@ function print_user_info($uid) {
          ), users
          where users.userid = :userid',
         array('userid' => $uid));
-    echo '<table>';
+    echo '<table class="table">';
     while ($ret = db_fetch_object($stmt)) {
         echo '<tr><th>Name</th><td>' . $ret->NAME . '</td></tr>';
         echo '<tr><th>Items sold</th><td>' . $ret->SOLD . '</td></tr>';
@@ -57,11 +57,13 @@ function print_comments($gid) {
         array('gid' => $gid));
     echo '<h3>Comments:</h3>';
     while ($ret = db_fetch_object($stmt)) {
+        echo '<div class="panel panel-default">';
         echo 'On ' . $ret->WROTE . ', <b>' . $ret->NAME . '</b> wrote: <br/>';
         echo '<div style="margin-left: 10px;">';
         echo '<b>Rating: </b>', rating_stars($ret->SCORE), '<br/>';
         echo '<b>Comment: </b>';
         echo $ret->CONTENT . '<br/>';
+        echo '</div>';
         echo '</div>';
     }
     db_close($conn);
@@ -79,15 +81,17 @@ function print_product_sold($gid) {
             where orders.gid = :gid and orders.fulfill = contracts.cid
         ) ', array('gid' => $gid));
 
-    echo '<h3>Sell:</h3>';
-    echo '<table>';
+    //echo '<h3>Sell:</h3>';
+    echo '<table class="table">';
     while ($ret = db_fetch_object($stmt)) {
         $avg_price = 'N/A';
         if ($ret->SOLD != 0) {
             $avg_price = $ret->AVG_PRICE;
         }
         echo '<tr><th>Sold</th><td>' . $ret->SOLD . '</td></tr>';
-        echo '<tr><th>Average price</th><td>' . $avg_price . '</td></tr>';
+        echo '<tr><th>Average price</th><td>';
+        printf("%.2f", $avg_price);
+        echo '</td></tr>';
     }
     echo '</table>';
 
@@ -105,7 +109,7 @@ function print_contract_info($cid) {
         where contracts.cid = :cid and goods.gid = contracts.gid and contracts.userid = :userid', 
         array('cid' => $cid, 'userid' => session_userid()));
 
-    echo '<table>';
+    echo '<table class="table">';
     while ($ret = db_fetch_object($stmt)) {
         $end = 'never';
         if ($ret->END != '') {

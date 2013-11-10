@@ -13,6 +13,15 @@ if (!isset($_POST['price']) || !isset($_POST['qty']) || !isset($_POST['begin']) 
 <html>
     <head>
         <title>Selling</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
     </head>
     <body>
         <h1>Sell Product</h1>
@@ -23,17 +32,17 @@ print_product_info($gid);
         <h3>Contract information: </h3>
 
         <form action="sellgood.php?gid=<?php echo $gid; ?>" method="POST">
-            <table>
+            <table class="table">
             <tr><th>Quantity:</th><td>
-            <input type="text" name="qty" value="1"/></td><tr/>
+            <input type="text" name="qty" value="1" class="form-control"/></td><tr/>
             <tr><th>Price: </th><td>
-            <input type="text" name="price" value="1.00"/></td><tr/>
+            <input type="text" name="price" value="1.00" class="form-control"/></td><tr/>
             <tr><th>Begin (YYYYMMDD, default to today):</th><td>
-            <input type="text" name="begin" value="<?php echo now(); ?>"/></td><tr/>
+            <input type="text" name="begin" value="<?php echo now(); ?>" class="form-control"/></td><tr/>
             <tr><th>End (YYYYMMDD, or leave empty):</th><td>
-            <input type="text" name="end"/></td><tr/>
+            <input type="text" name="end" class="form-control"/></td><tr/>
             </table>
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Sell" class="btn btn-lg btn-primary"/>
         </form>
 <h3><a href='dashboard.php'>Dashboard</a></h3>
     </body>
