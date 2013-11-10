@@ -20,11 +20,10 @@ include_once 'conn.php';
 $conn = db_connect();
 $stmt = db_bind_exe($conn, 'select comments.gid, cmtid, goods.name, score, content, TO_CHAR(wrote, \'YYYY-MM-DD\') wrote from comments, goods where comments.userid = :userid and comments.gid = goods.gid order by cmtid', array('userid' => session_userid()));
 
+include_once 'util.php';
 while ($ret = db_fetch_object($stmt)) {
     echo '<tr><td>' . $ret->NAME . '</td><td>' . $ret->WROTE . '</td>';
-    echo '<td>' . str_repeat('<img src="img/star.png" width=12 height=12/>', $ret->SCORE);
-    echo  str_repeat('<img src="img/nstar.png" width=12 height=12/>', 5-$ret->SCORE);
-    echo '</td><td>' . $ret->CONTENT . '</td>';
+    echo '<td>' . rating_stars($ret->SCORE) . '</td><td>' . $ret->CONTENT . '</td>';
     echo '<td><a href="removecmt.php?id=' . $ret->CMTID . '">Remove</a></td>';
     echo '</tr>';
 }

@@ -56,4 +56,9 @@ function is_not_empty($stmt, $args) {
     return false;
 }
 
+function rating_stars($score) {
+    return str_repeat('<img src="img/star.png" width=12 height=12/>', $score) .
+        str_repeat('<img src="img/nstar.png" width=12 height=12/>', 5-$score);
+}
+
 ?>
