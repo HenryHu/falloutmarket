@@ -22,6 +22,11 @@ verify_session();
     <body>
 <div class="container">
         <h1>My Past Contracts</h1>
+<div class="col-md-2">
+<h3><a href='mycontracts.php'>Current Contracts</a></h3>
+<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+<div class="col-md-10">
         <table class="table">
             <tr> <th> Product </th> <th> Price </th> <th> Quantity </th> <th> Begin </th> <th> End </th> <th> Sold </th> <th> </th> </tr>
 <?php
@@ -40,16 +45,14 @@ while ($ret = db_fetch_object($stmt)) {
     else
         $end = 'never';
     echo '<td>' . $end . '</td><td>' . $ret->SOLD . '</td>';
-    echo '<td><a href="contractdetail.php?id=' . $ret->CID . '" class="btn btn-default">Detail</a></td>';
+    echo '<td><a href="contractdetail.php?id=' . $ret->CID . '" class="btn">Detail</a></td>';
     echo '</tr>';
 }
 
 db_close($conn);
 ?>
 </table>
-
-<h3><a href='mycontracts.php'>Current Contracts</a></h3>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
 </div>
     </body>
 </html>

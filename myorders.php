@@ -22,6 +22,10 @@ verify_session();
     <body>
 <div class="container">
         <h1>Orders</h1>
+<div class="col-md-2">
+<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+<div class="col-md-10">
         <table class="table">
             <tr> <th> Product </th> <th> Seller </th> <th> Price </th> <th> Quantity </th> <th> Date </th> <th> </th> </tr>
 <?php
@@ -34,7 +38,7 @@ while ($ret = db_fetch_object($stmt)) {
     echo '<tr><td><a href="goodinfo.php?gid=' . $ret->GID . '">' . $ret->NAME . '</a></td><td><a href="sellerinfo.php?uid=' . $ret->SELLER_UID . '">' . $ret->SELLER . '</a></td>';
     echo '<td>' . $ret->PRICE . '</td><td>' . $ret->QTY . '</td>';
     echo '<td>' . $ret->PLACED . '</td>';
-    echo '<td><a href="orderdetail.php?id=' . $ret->OID . '" class="btn btn-default">Detail</a>';
+    echo '<td><a href="orderdetail.php?id=' . $ret->OID . '" class="btn">Detail</a>';
     echo '<a href="newcmt.php?gid=' . $ret->GID . '" class="btn btn-default">Comment</a></td>';
     echo '</tr>';
 }
@@ -42,8 +46,7 @@ while ($ret = db_fetch_object($stmt)) {
 db_close($conn);
 ?>
 </table>
-
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
 </div>
     </body>
 </html>

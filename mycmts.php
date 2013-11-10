@@ -22,6 +22,10 @@ verify_session();
     <body>
 <div class="container">
         <h1>My Comments</h1>
+<div class="col-md-2">
+<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+<div class="col-md-10">
         <table class="table">
             <tr> <th> Product </th> <th> Date </th> <th> Rating </th> <th> Comment </th> <th> </th> </tr>
 <?php
@@ -41,8 +45,7 @@ while ($ret = db_fetch_object($stmt)) {
 db_close($conn);
 ?>
 </table>
-
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
 </div>
     </body>
 </html>

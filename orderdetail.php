@@ -24,7 +24,12 @@ $oid = get_arg('id');
     </head>
     <body>
         <div class="container">
-        <h1>Detail</h1>
+        <h1>Order Detail</h1>
+<div class="col-md-2">
+<h3><a href='myorders.php'>My Orders</a></h3>
+<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+<div class="col-md-10">
         <table class="table">
 
 
@@ -50,8 +55,7 @@ db_close($conn);
 ?>
 
 </table>
-<h3><a href='myorders.php'>My Orders</a></h3>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
 </div>
 </body>
 </html>

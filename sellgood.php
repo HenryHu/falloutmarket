@@ -24,6 +24,7 @@ if (!isset($_POST['price']) || !isset($_POST['qty']) || !isset($_POST['begin']) 
 
     </head>
     <body>
+<div class="container">
         <h1>Sell Product</h1>
 <?php
 include_once 'info.php';
@@ -45,6 +46,7 @@ print_product_info($gid);
             <input type="submit" value="Sell" class="btn btn-lg btn-primary"/>
         </form>
 <h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
     </body>
 </html>
 

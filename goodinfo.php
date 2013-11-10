@@ -23,16 +23,24 @@ $gid = get_arg('gid');
     <body>
 <div class="container">
         <h1>Product Information</h1>
+<div class="col-md-2">
+    <h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+<div class="col-md-10">
 <?php
 
 include 'info.php';
 ?>
 <div class="container">
+<div class="row">
 <div class="col-md-6">
 <?php print_product_info($gid); ?>
 </div>
+</div>
+<div class="row">
 <div class="col-md-6">
 <?php print_product_sold($gid); ?>
+</div>
 </div>
 </div>
     <a href='buygood.php?id=<?php echo $gid; ?>' class="btn btn-lg btn-default">Buy</a>
@@ -40,8 +48,7 @@ include 'info.php';
     <a href="newcmt.php?gid=<?php echo $gid; ?>" class="btn btn-lg btn-default">Comment</a>
 <div class="col-md-12">
 <?php print_comments($gid); ?>
-
-    <h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
 </div>
     </body>
 </html>
