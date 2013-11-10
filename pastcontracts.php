@@ -23,12 +23,18 @@ verify_session();
 <div class="container">
         <h1>My Past Contracts</h1>
 <div class="col-md-2">
-<h3><a href='mycontracts.php'>Current Contracts</a></h3>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+<div class="navbar">
+<div class="navbar-inner">
+<ul class="nav" style="font-size: 18pt;">
+<li><a href='mycontracts.php'>Current Contracts</a></li>
+<li><a href='dashboard.php'>Dashboard</a></li>
+</ul>
+</div>
+</div>
 </div>
 <div class="col-md-10">
         <table class="table">
-            <tr> <th> Product </th> <th> Price </th> <th> Quantity </th> <th> Begin </th> <th> End </th> <th> Sold </th> <th> </th> </tr>
+            <tr> <th> Product </th> <th> Price </th> <th> Quantity </th> <th> Begin </th> <th> End </th> <th> Sold </th> <th> Left </th> <th> </th> </tr>
 <?php
 include_once 'conn.php';
 include_once 'util.php';
@@ -45,6 +51,7 @@ while ($ret = db_fetch_object($stmt)) {
     else
         $end = 'never';
     echo '<td>' . $end . '</td><td>' . $ret->SOLD . '</td>';
+    echo '<td>' . ($ret->QTY - $ret->SOLD) . '</td>';
     echo '<td><a href="contractdetail.php?id=' . $ret->CID . '" class="btn">Detail</a></td>';
     echo '</tr>';
 }

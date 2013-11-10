@@ -25,8 +25,14 @@ verify_session();
         <h1>Addressbook</h1>
 </div>
 <div class="col-md-2">
-<h3><a href='newaddr.php'>New Address</a></h3>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+<div class="navbar">
+<div class="navbar-inner">
+<ul class="nav" style="font-size: 18pt;">
+<li><a href='newaddr.php'>New Address</a></li>
+<li><a href='dashboard.php'>Dashboard</a></li>
+</ul>
+</div>
+</div>
 </div>
         <h3>Your addresses: </h3>
 <div class="col-md-10">

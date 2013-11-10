@@ -26,6 +26,17 @@ if (!isset($_POST['price']) || !isset($_POST['qty']) || !isset($_POST['begin']) 
     <body>
 <div class="container">
         <h1>Sell Product</h1>
+<div class="col-md-2">
+<div class="navbar">
+<div class="navbar-inner">
+<ul class="nav" style="font-size: 18pt;">
+<li><a href='sell.php'>Other choices</a></li>
+<li><a href='dashboard.php'>Dashboard</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-10">
 <?php
 include_once 'info.php';
 print_product_info($gid);
@@ -45,7 +56,7 @@ print_product_info($gid);
             </table>
             <input type="submit" value="Sell" class="btn btn-lg btn-primary"/>
         </form>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
 </div>
     </body>
 </html>

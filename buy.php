@@ -23,7 +23,16 @@ verify_session();
 <div class="container">
 <div class="col-md-12">
         <h1>Shopping</h1>
-<div class="col-md-11">
+<div class="col-md-2">
+<div class="navbar">
+<div class="navbar-inner">
+<ul class="nav" style="font-size: 18pt;">
+<li><a href='dashboard.php'>Dashboard</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-10">
         <h3>I want to ...</h3>
         <ul>
             <li><a href='buy.php?mode=viewall'>View the list of products available.</a></li>
@@ -116,7 +125,6 @@ if (isset($_GET['mode'])) {
 <?php
 }
 ?>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
 </div>
 </div>
     </body>

@@ -26,6 +26,17 @@ $gid = get_arg('id');
 <div class="col-md-12">
         <h1>Purchase</h1>
 </div>
+<div class="col-md-2">
+<div class="navbar">
+<div class="navbar-inner">
+<ul class="nav" style="font-size: 18pt;">
+<li><a href='buy.php'>Continue shopping</a></li>
+<li><a href='dashboard.php'>Dashboard</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-10">
 <div class="container">
 <div class="col-md-10">
 <div class="col-md-6">
@@ -67,15 +78,14 @@ while ($ret = db_fetch_object($stmt)) {
     echo '<td><a href="sellerinfo.php?uid=' . $ret->USERID . '">' . $ret->NAME . '(' . $ret->USERNAME . ')</a></td>';
     echo '<td>' . $ret->PRICE . '</td>';
     echo '<td>' . $ret->CONTRACT_LEFT . '</td>';
-    echo '<td><form action="buydetail.php?cid=' . $ret->CID . '&gid=' . $gid . '" method="POST"><input type="text" name="qty" value="1"/><input type="submit" value="Buy" class="btn btn-default"/></form></td>';
+    echo '<td><form class="form-inline" action="buydetail.php?cid=' . $ret->CID . '&gid=' . $gid . '" method="POST"><div class="form-group"><input type="text" name="qty" value="1" class="form-control" placeholder="Quantity"/></div><input type="submit" value="Buy" class="btn btn-default"/></form></td>';
     echo '</tr>';
 }
 ?>
         </table>
 </div>
 </div>
-<h3><a href='buy.php'>Buy something else</a></h3>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
 </div>
     </body>
 </html>

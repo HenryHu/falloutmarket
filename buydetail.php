@@ -80,7 +80,7 @@ print_product_info($gid);
 </div>
         
 </div>
-<div class="col-md-12">
+<div class="container">
 <div class="col-md-6">
 <?php
 echo '<p/>';
@@ -149,8 +149,8 @@ db_close($conn);
 ?>
         </table>
 </div>
-<input type="submit" value="Place order" class="btn btn-primary btn-lg"/>
 </div>
+<input type="submit" value="Place order" class="btn btn-primary btn-lg"/>
 
 </form>
 </div>
