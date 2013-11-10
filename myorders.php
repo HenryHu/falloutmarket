@@ -25,6 +25,7 @@ while ($ret = db_fetch_object($stmt)) {
     echo '<td>' . $ret->PRICE . '</td><td>' . $ret->QTY . '</td>';
     echo '<td>' . $ret->PLACED . '</td>';
     echo '<td><a href="orderdetail.php?id=' . $ret->OID . '">Detail</a></td>';
+    echo '<td><a href="newcmt.php?gid=' . $ret->GID . '">Comment</a></td>';
     echo '</tr>';
 }
 

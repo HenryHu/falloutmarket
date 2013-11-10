@@ -16,7 +16,9 @@ function db_close($conn) {
 function db_bind($conn, $stmt, $args) {
     $parsed = oci_parse($conn, $stmt);
     foreach ($args as $key => $value) {
-        oci_bind_by_name($parsed, ':' . $key, $args[$key]);
+        // possible mismatch (substr)
+        if (strpos($stmt, ':' . $key) !== false)
+            oci_bind_by_name($parsed, ':' . $key, $args[$key]);
     }
     return $parsed;
 }

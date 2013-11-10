@@ -16,11 +16,11 @@ $conn = db_connect();
 $stmt = db_bind_exe($conn,
     'select contracts.gid, contract_left, contracts.price, users.name seller, users.username seller_username, goods.name good_name
         from (
-            select orders.fulfill fulfill_contract, sum(contracts.qty) - sum(orders.qty) contract_left
+            select orders.fulfill fulfill_contract, min(contracts.qty) - sum(orders.qty) contract_left
                 from orders, contracts
                 where orders.fulfill = contracts.cid
                 group by orders.fulfill
-                having sum(orders.qty) < sum(contracts.qty)
+                having sum(orders.qty) < min(contracts.qty)
         ), contracts, users, goods
         where contracts.userid = users.userid
         and contracts.gid = goods.gid
@@ -77,7 +77,7 @@ include_once 'conn.php';
 
 $first = true;
 $conn = db_connect();
-$stmt = db_bind_exe($conn, 'select address, addrid from addresses where userid = :userid',
+$stmt = db_bind_exe($conn, 'select address, addrid from addresses where userid = :userid and removed = 0',
     array('userid' => session_userid()));
 
 while ($ret = db_fetch_object($stmt)) {
@@ -108,7 +108,7 @@ echo 'You will be charged for ' . $charge . ' dollar(s).';
 include_once 'conn.php';
 
 $conn = db_connect();
-$stmt = db_bind_exe($conn, 'select act_number, valid_before, acctid from accounts where userid = :userid and valid_before > TO_DATE(:now, \'YYYYMMDD\')',
+$stmt = db_bind_exe($conn, 'select act_number, valid_before, acctid from accounts where userid = :userid and valid_before > TO_DATE(:now, \'YYYYMMDD\') and removed = 0',
     array('userid' => session_userid(), 'now' => now()));
 
 $first = true;

@@ -30,7 +30,7 @@ $conn = db_connect();
 $stmt = db_bind_exe($conn,
     'select contracts.cid, contract_left, contracts.price, users.name, users.username
         from (
-            select orders.fulfill fulfill_contract, sum(contracts.qty) - sum(orders.qty) contract_left
+            select orders.fulfill fulfill_contract, min(contracts.qty) - sum(orders.qty) contract_left
                 from orders, contracts
                 where orders.fulfill = contracts.cid
                 group by orders.fulfill
