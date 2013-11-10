@@ -94,5 +94,33 @@ function print_product_sold($gid) {
     db_close($conn);
 }
 
+function print_contract_info($cid) {
+    $conn = db_connect();
+
+    $stmt = db_bind_exe($conn, '
+        select goods.name, contracts.gid, contracts.price, contracts.qty, TO_CHAR(contracts.begin, \'YYYY-MM-DD\') begin, TO_CHAR(contracts.end, \'YYYY-MM-DD\') end, NVL(sold, 0) sold
+        from contracts, (
+            select sum(qty) sold from orders where orders.fulfill = :cid
+        ), goods
+        where contracts.cid = :cid and goods.gid = contracts.gid and contracts.userid = :userid', 
+        array('cid' => $cid, 'userid' => session_userid()));
+
+    echo '<table>';
+    while ($ret = db_fetch_object($stmt)) {
+        $end = 'never';
+        if ($ret->END != '') {
+            $end = $ret->END;
+        }
+        echo '<tr><th>Product</th><td><a href="goodinfo.php?gid=' . $ret->GID . '">' . $ret->NAME . '</a></td></tr>';
+        echo '<tr><th>Price</th><td>' . $ret->PRICE . '</td></tr>';
+        echo '<tr><th>Quantity</th><td>' . $ret->QTY . '</td></tr>';
+        echo '<tr><th>Begin</th><td>' . $ret->BEGIN . '</td></tr>';
+        echo '<tr><th>End</th><td>' . $end . '</td></tr>';
+        echo '<tr><th>Sold</th><td>' . $ret->SOLD . '</td></tr>';
+    }
+    echo '</table>';
+
+    db_close($conn);
+}
 
 ?>
