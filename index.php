@@ -9,5 +9,6 @@
             Password: <input type='password' name='password' />
             <input type='submit' value='Login'/>
         </form>
+        <h3><a href='newuser.php'>New User</a></h3>
     </body>
 </html>

@@ -32,7 +32,6 @@ db_close($conn);
 ?>
 </table>
 
-<h3><a href='newacct.php'>New Account</a></h3>
 <h3><a href='dashboard.php'>Dashboard</a></h3>
     </body>
 </html>
