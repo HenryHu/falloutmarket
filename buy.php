@@ -84,8 +84,12 @@ if (isset($_GET['mode'])) {
             <tr><th>Product</th><th>Available</th><th>Minimal Price</th><th>Average Rating</th><th></th></tr>
 <?php
     while ($ret = db_fetch_object($stmt)) {
+        $avg_rating = 'N/A';
+        if ($ret->AVG_RATING != 0) {
+            $avg_rating = $ret->AVG_RATING;
+        }
         echo '<tr><td><a href="goodinfo.php?gid=' . $ret->GID . '">' . $ret->NAME . '</a></td><td>' . $ret->AVAILABLE . '</td>';
-    echo '<td>' . $ret->MIN_PRICE . '</td><td>' . $ret->AVG_RATING . '</td>';
+    echo '<td>' . $ret->MIN_PRICE . '</td><td>' . $avg_rating . '</td>';
         echo '<td><a href=\'buygood.php?id=' . $ret->GID . '\'>Buy</a></td>';
         echo '</tr>';
     }
