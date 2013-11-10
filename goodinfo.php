@@ -18,11 +18,14 @@ $gid = get_arg('gid');
 
 include 'info.php';
 print_product_info($gid);
+print_product_sold($gid);
+print_comments($gid);
 
 ?>
     <h3><a href='buygood.php?id=<?php echo $gid; ?>'>Buy</a></h3>
     <h3><a href='sellgood.php?gid=<?php echo $gid; ?>'>Sell</a></h3>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+    <h3><a href="newcmt.php?gid=<?php echo $gid; ?>">Comment</a></h3>
+    <h3><a href='dashboard.php'>Dashboard</a></h3>
     </body>
 </html>
 

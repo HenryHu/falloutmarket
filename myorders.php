@@ -18,10 +18,10 @@ verify_session();
 include_once 'conn.php';
 
 $conn = db_connect();
-$stmt = db_bind_exe($conn, 'select goods.name, orders.gid, orders.oid, orders.qty, TO_CHAR(placed, \'YYYY-MM-DD\') placed, fulfill, contracts.price, users.name seller from orders, goods, contracts, users where orders.userid = :userid and orders.gid = goods.gid and contracts.cid = fulfill and contracts.userid = users.userid order by oid', array('userid' => session_userid()));
+$stmt = db_bind_exe($conn, 'select goods.name, orders.gid, orders.oid, orders.qty, TO_CHAR(placed, \'YYYY-MM-DD\') placed, fulfill, contracts.price, users.userid seller_uid, users.name seller from orders, goods, contracts, users where orders.userid = :userid and orders.gid = goods.gid and contracts.cid = fulfill and contracts.userid = users.userid order by oid', array('userid' => session_userid()));
 
 while ($ret = db_fetch_object($stmt)) {
-    echo '<tr><td>' . $ret->NAME . '</td><td>' . $ret->SELLER . '</td>';
+    echo '<tr><td><a href="goodinfo.php?gid=' . $ret->GID . '">' . $ret->NAME . '</a></td><td><a href="sellerinfo.php?uid=' . $ret->SELLER_UID . '">' . $ret->SELLER . '</a></td>';
     echo '<td>' . $ret->PRICE . '</td><td>' . $ret->QTY . '</td>';
     echo '<td>' . $ret->PLACED . '</td>';
     echo '<td><a href="orderdetail.php?id=' . $ret->OID . '">Detail</a></td>';

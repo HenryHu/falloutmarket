@@ -22,7 +22,7 @@ $stmt = db_bind_exe($conn, 'select comments.gid, cmtid, goods.name, score, conte
 
 include_once 'util.php';
 while ($ret = db_fetch_object($stmt)) {
-    echo '<tr><td>' . $ret->NAME . '</td><td>' . $ret->WROTE . '</td>';
+    echo '<tr><td><a href="goodinfo.php?gid=' . $ret->GID . '">' . $ret->NAME . '</a></td><td>' . $ret->WROTE . '</td>';
     echo '<td>' . rating_stars($ret->SCORE) . '</td><td>' . $ret->CONTENT . '</td>';
     echo '<td><a href="removecmt.php?id=' . $ret->CMTID . '">Remove</a></td>';
     echo '</tr>';

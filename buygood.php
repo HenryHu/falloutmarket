@@ -54,5 +54,7 @@ while ($ret = db_fetch_object($stmt)) {
 }
 ?>
         </table>
+<h3><a href='buy.php'>Buy something else</a></h3>
+<h3><a href='dashboard.php'>Dashboard</a></h3>
     </body>
 </html>
