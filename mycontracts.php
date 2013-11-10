@@ -13,7 +13,7 @@ verify_session();
     <body>
         <h1>My Current Contracts</h1>
         <table>
-            <tr> <th> Product </th> <th> Price </th> <th> Quantity </th> <th> Begin </th> <th> End </th> <th> Sold </th> <th> Action </th> </tr>
+            <tr> <th> Product </th> <th> Price </th> <th> Quantity </th> <th> Begin </th> <th> End </th> <th> Sold </th> <th> Left </th> <th> Action </th> </tr>
 <?php
 include_once 'conn.php';
 include_once 'util.php';
@@ -41,6 +41,7 @@ while ($ret = db_fetch_object($stmt)) {
     else
         $end = 'never';
     echo '<td>' . $end . '</td><td>' . $ret->SOLD . '</td>';
+    echo '<td>' . ($ret->QTY - $ret->SOLD) . '</td>';
     echo '<td><a href="contractdetail.php?id=' . $ret->CID . '">Detail</a></td>';
     echo '</tr>';
 }

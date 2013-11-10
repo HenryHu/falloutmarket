@@ -18,8 +18,10 @@ if (!isset($_POST['act_number']) || !isset($_POST['valid_before'])) {
     <body>
         <h1>Please enter your new account: </h3>
         <form action='newacct.php' method='POST'>
-            Account number: <input type='text' name='act_number'/>
-            Valid before(YYYY-MM-DD): <input type='text' name='valid_before'/>
+<table>
+<tr><th>Account number: </th><td><input type='text' name='act_number'/></td></tr>
+<tr><th>Valid before(YYYY-MM-DD): </th><td><input type='text' name='valid_before'/></td></tr>
+</table>
             <input type='submit' value='Add'/>
         </form>
     </body>
