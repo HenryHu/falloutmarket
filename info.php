@@ -21,4 +21,22 @@ function print_product_info($gid) {
     db_close($conn);
 }
 
+function print_user_info($uid) {
+    $conn = db_connect();
+    $stmt = db_bind_exe($conn, 
+        'select users.name, sold from (
+            select sum(orders.qty) sold from orders, contracts
+            where orders.fulfill = contracts.cid and contracts.userid = :userid
+         ), users
+         where users.userid = :userid',
+        array('userid' => $uid));
+    echo '<table>';
+    while ($ret = db_fetch_object($stmt)) {
+        echo '<tr><th>Name</th><td>' . $ret->NAME . '</td></tr>';
+        echo '<tr><th>Items sold</th><td>' . $ret->SOLD . '</td></tr>';
+    }
+    echo '</table>';
+    db_close($conn);
+}
+
 ?>

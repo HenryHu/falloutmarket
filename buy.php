@@ -84,7 +84,7 @@ if (isset($_GET['mode'])) {
             <tr><th>Product</th><th>Available</th><th>Minimal Price</th><th>Average Rating</th><th></th></tr>
 <?php
     while ($ret = db_fetch_object($stmt)) {
-        echo '<tr><td>' . $ret->NAME . '</td><td>' . $ret->AVAILABLE . '</td>';
+        echo '<tr><td><a href="goodinfo.php?gid=' . $ret->GID . '">' . $ret->NAME . '</a></td><td>' . $ret->AVAILABLE . '</td>';
     echo '<td>' . $ret->MIN_PRICE . '</td><td>' . $ret->AVG_RATING . '</td>';
         echo '<td><a href=\'buygood.php?id=' . $ret->GID . '\'>Buy</a></td>';
         echo '</tr>';

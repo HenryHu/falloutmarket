@@ -28,7 +28,7 @@ include_once 'conn.php';
 
 $conn = db_connect();
 $stmt = db_bind_exe($conn,
-    'select contracts.cid, contract_left, contracts.price, users.name, users.username
+    'select contracts.userid, contracts.cid, contract_left, contracts.price, users.name, users.username
         from (
             select orders.fulfill fulfill_contract, min(contracts.qty) - sum(orders.qty) contract_left
                 from orders, contracts
@@ -46,7 +46,7 @@ $stmt = db_bind_exe($conn,
 
 while ($ret = db_fetch_object($stmt)) {
     echo '<tr>';
-    echo '<td>' . $ret->NAME . '(' . $ret->USERNAME . ')</td>';
+    echo '<td><a href="sellerinfo.php?uid=' . $ret->USERID . '">' . $ret->NAME . '(' . $ret->USERNAME . ')</a></td>';
     echo '<td>' . $ret->PRICE . '</td>';
     echo '<td>' . $ret->CONTRACT_LEFT . '</td>';
     echo '<td><form action="buydetail.php?cid=' . $ret->CID . '&gid=' . $gid . '" method="POST"><input type="text" name="qty" value="1"/><input type="submit" value="Buy"/></form></td>';
