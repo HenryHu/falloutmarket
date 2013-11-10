@@ -49,8 +49,7 @@ $stmt = db_bind_exe($conn,
         order by cid
     )
     left join (select sum(qty) sold, fulfill sold_cid from orders group by fulfill)
-    on cid = sold_cid
-
+    on cid = sold_cid 
     ', array('userid' => session_userid(), 'now' => now()));
 
 while ($ret = db_fetch_object($stmt)) {

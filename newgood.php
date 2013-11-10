@@ -15,23 +15,44 @@ if (!isset($_POST['name']) || !isset($_POST['description']) || !isset($_POST['ag
 <html>
     <head>
         <title>New product</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     </head>
     <body>
+<div class="container">
         <h1>New Product</h1>
+<div class="col-md-12">
+<div class="col-md-2">
+<div class="navbar">
+<div class="navbar-inner">
+<ul class="nav" style="font-size: 18pt;">
+<li><a href='dashboard.php'>Dashboard</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-10">
         <h3>Product information: </h3>
 
         <form action="newgood.php" method="POST">
-            <table>
+            <table class="table">
             <tr><th>Name:</th><td>
-            <input type="text" name="name"/></td><tr/>
+            <input type="text" name="name" class="form-control" placeholder="Product name"/></td><tr/>
             <tr><th>Minimal age:</th><td>
-            <input type="text" name="age_limit" value="0"/></td><tr/>
+            <input type="text" name="age_limit" value="0" class="form-control" placeholder="Age limit, 0 for unlimited"/></td><tr/>
             <tr><th>Description:</th><td>
-            <textarea name="description"></textarea></td></tr>
+            <textarea name="description" class="form-control" placeholder="Product description"></textarea></td></tr>
             </table>
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Submit" class="btn btn-primary btn-lg"/>
         </form>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
+</div>
     </body>
 </html>
 

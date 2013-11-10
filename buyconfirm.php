@@ -61,7 +61,7 @@ db_close($conn);
         <h1>Confirmation</h1>
         <h3>Purchase succeeded.</h3>
         You just purchased <?php echo $qty; ?> <?php echo $good_name; ?>.
-        <h3><a href='dashboard.php'>Dashboard</a></h3>
+        <h3><a href='dashboard.php' class="btn btn-lg btn-primary">Dashboard</a></h3>
         </div>
     </body>
 </html>

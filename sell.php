@@ -37,7 +37,7 @@ verify_session();
             <li><a href='sell.php?mode=viewall'>View the list of products to sell</a></li>
             <li>Search for a specific item to sell.
                 <form action='sell.php?mode=search' method='POST'>
-                    <table class="table"><tr><th>Search for: </th><td><input type='text' name='q' class="form-control"/></td>
+                    <table class="table"><tr><th>Search for: </th><td><input type='text' name='q' class="form-control" placeholder="Name of the product"/></td>
                     <td><input type='submit' value='Search' class="btn btn-primary"/></td></tr></table>
                 </form>
             <li><a href='newgood.php'>Sell something new</a></li>

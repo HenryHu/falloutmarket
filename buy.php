@@ -38,7 +38,7 @@ verify_session();
             <li><a href='buy.php?mode=viewall'>View the list of products available.</a></li>
             <li>Search for a specific item.
                 <form action='buy.php?mode=search' method='POST'>
-                    <table class="table"><tr><th>Search for: </th><td><input type='text' name='q' class="form-control"/></td>
+                    <table class="table"><tr><th>Search for: </th><td><input type='text' name='q' class="form-control" placeholder="Name of the product"/></td>
                     <td><input type='submit' value='Search' class="btn btn-primary"/></td></tr></table>
                 </form>
         </ul>
