@@ -53,20 +53,22 @@ if (isset($_GET['mode'])) {
         $conn = db_connect();
         $stmt = db_bind_exe($conn, 
         'select aname, agid, age_limit, available, min_price, avg_rating from (
-            select goods.name aname, goods.gid agid, goods.age_limit age_limit, available, min_price
-            from goods
-            left outer join (
-                select contracts.gid good_id, sum(contract_left) available, min(contracts.price) min_price from (
-                    select orders.fulfill fulfill_contract, min(contracts.qty) - sum(orders.qty) contract_left
-                        from orders, contracts
-                        where orders.fulfill = contracts.cid
-                        group by orders.fulfill
-                    union select cid, qty from contracts where cid not in (select fulfill from orders)
-                ), contracts
-                where contracts.cid = fulfill_contract and contracts.begin <= TO_DATE(:now, \'YYYYMMDD\') and (contracts.end is null or contracts.end > TO_DATE(:now, \'YYYYMMDD\'))
-                group by contracts.gid
-            )
-            on goods.gid = good_id
+            select aname, agid, age_limit, available, min_price from (
+                select goods.name aname, goods.gid agid, goods.age_limit age_limit, available, min_price
+                from goods
+                left outer join (
+                    select contracts.gid good_id, sum(contract_left) available, min(contracts.price) min_price from (
+                        select orders.fulfill fulfill_contract, min(contracts.qty) - sum(orders.qty) contract_left
+                            from orders, contracts
+                            where orders.fulfill = contracts.cid
+                            group by orders.fulfill
+                        union select cid, qty from contracts where cid not in (select fulfill from orders)
+                    ), contracts
+                    where contracts.cid = fulfill_contract and contracts.begin <= TO_DATE(:now, \'YYYYMMDD\') and (contracts.end is null or contracts.end > TO_DATE(:now, \'YYYYMMDD\'))
+                    group by contracts.gid
+                )
+                on goods.gid = good_id
+            ), users where users.userid = :userid and age_limit <= users.age
         )
         left outer join  (
             select goods.gid all_cmt_good_id, avg_rating
@@ -97,7 +99,7 @@ if (isset($_GET['mode'])) {
                     group by contracts.gid
                 )
                 on goods.gid = good_id
-            ) where UPPER(aname) like UPPER(:query)
+            ), users where UPPER(aname) like UPPER(:query) and age_limit <= users.age and users.userid = :userid
         )
         left outer join  (
             select goods.gid all_cmt_good_id, avg_rating
@@ -124,8 +126,12 @@ if (isset($_GET['mode'])) {
         if ($ret->AVG_RATING != 0) {
             $avg_rating = rating_stars($ret->AVG_RATING);
         }
+        $age_limit = 'No';
+        if ($ret->AGE_LIMIT != 0) {
+            $age_limit = $ret->AGE_LIMIT;
+        }
         echo '<tr><td><a href="goodinfo.php?gid=' . $ret->AGID . '">' . $ret->ANAME . '</a></td><td>' . $avail . '</td>';
-    echo '<td>' . $minprice . '</td><td>' . $avg_rating . '</td><td>' . $ret->AGE_LIMIT . '</td>';
+    echo '<td>' . $minprice . '</td><td>' . $avg_rating . '</td><td>' . $age_limit . '</td>';
         echo '<td><a href=\'sellgood.php?gid=' . $ret->AGID . '\' class="btn btn-default">Sell</a></td>';
         echo '</tr>';
     }
