@@ -15,6 +15,7 @@ verify_session();
         <h3>Welcome, <?php echo session_user(); ?> <a href='logout.php'>Logout</a> </h3>
         <h2>Personal Information</h2>
         <ul>
+            <li> <a href='myinfo.php'>My Information</a> </li>
             <li> <a href='addressbook.php'>Addressbook</a> </li>
             <li> <a href='myaccounts.php'>My accounts</a> </li>
         </ul>
