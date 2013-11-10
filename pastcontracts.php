@@ -53,7 +53,7 @@ $stmt = db_bind_exe($conn,
     ', array('userid' => session_userid(), 'now' => now()));
 
 while ($ret = db_fetch_object($stmt)) {
-    echo '<tr><td>' . $ret->NAME . '</td><td>' . $ret->PRICE . '</td>';
+    echo '<tr><td><a href="goodinfo.php?gid=' . $ret->GID . '">' . $ret->NAME . '</a></td><td>' . $ret->PRICE . '</td>';
     echo '<td>' . $ret->QTY . '</td><td>' . $ret->BEGIN . '</td>';
     $end = '';
     if ($ret->END)
