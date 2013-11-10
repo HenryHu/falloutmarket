@@ -39,6 +39,7 @@ if (isset($_GET['mode'])) {
                 where orders.fulfill = contracts.cid
                 group by orders.fulfill
                 having sum(orders.qty) < min(contracts.qty)
+            union select cid, qty from contracts where cid not in (select fulfill from orders)
         ), contracts
         where contracts.cid = fulfill_contract and contracts.begin <= TO_DATE(:now, \'YYYYMMDD\') and (contracts.end is null or contracts.end > TO_DATE(:now, \'YYYYMMDD\'))
         group by contracts.gid
@@ -63,6 +64,7 @@ if (isset($_GET['mode'])) {
                 where orders.fulfill = contracts.cid
                 group by orders.fulfill
                 having sum(orders.qty) < min(contracts.qty)
+            union select cid, qty from contracts where cid not in (select fulfill from orders)
         ), contracts
         where contracts.cid = fulfill_contract and contracts.begin <= TO_DATE(:now, \'YYYYMMDD\') and (contracts.end is null or contracts.end > TO_DATE(:now, \'YYYYMMDD\'))
         group by contracts.gid

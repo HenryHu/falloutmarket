@@ -19,6 +19,7 @@ check_not_empty('select contracts.cid from (
                 where orders.fulfill = contracts.cid
                 group by orders.fulfill
                 having sum(orders.qty) < min(contracts.qty)
+            union select cid, qty from contracts where cid not in (select fulfill from orders)
         ), contracts
         where contracts.cid = fulfill_contract
         and contracts.cid = :cid and contract_left >= :qty', $args);

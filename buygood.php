@@ -35,6 +35,7 @@ $stmt = db_bind_exe($conn,
                 where orders.fulfill = contracts.cid
                 group by orders.fulfill
                 having sum(orders.qty) < sum(contracts.qty)
+            union select cid, qty from contracts where cid not in (select fulfill from orders)
         ), contracts, users
         where contracts.gid = :gid and contracts.userid = users.userid
         and contracts.cid = fulfill_contract
