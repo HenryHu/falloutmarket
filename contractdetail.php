@@ -23,13 +23,24 @@ $cid = get_arg('id');
     <body>
 <div class="container">
         <h1>Contract Information</h1>
+<div class="col-md-2">
+<div class="navbar">
+<div class="navbar-inner">
+<ul class="nav" style="font-size: 18pt;">
+<li><a href='mycontracts.php'>Contracts</a></li>
+<li><a href='dashboard.php'>Dashboard</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-10">
 <?php
 
 include 'info.php';
 print_contract_info($cid);
 
 ?>
-    <h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
 </div>
     </body>
 </html>
