@@ -28,6 +28,17 @@ if (!isset($_POST['rating']) || !isset($_POST['content'])) {
     <body>
 <div class="container">
         <h1>New Comment</h1>
+<div class="col-md-2">
+<div class="navbar">
+<div class="navbar-inner">
+<ul class="nav" style="font-size: 18pt;">
+<li><a href='myorders.php'>My Orders</a></li>
+<li><a href='dashboard.php'>Dashboard</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-10">
         <h3>Write new comment for: </h3>
 <?php
 
@@ -51,7 +62,7 @@ print_product_info($gid);
             <textarea name="content" class="form-control"></textarea><br/>
             <input type="submit" value="Submit" class="btn btn-lg btn-primary"/>
         </form>
-<h3><a href='dashboard.php'>Dashboard</a></h3>
+</div>
 </div>
     </body>
 </html>
