@@ -64,11 +64,23 @@ print_product_info($gid);
 <?php
 
 } else {
-
-    check($_POST['qty'] > 0, "Invalid quantity", "sellgood.php?gid=" . $gid);
+    $qty = $_POST['qty'];
+    check($qty > 0, "Invalid quantity", "sellgood.php?gid=" . $gid);
+    check($qty == intval($qty), "Only complete items can be sold.", "sellgood.php?gid=" . $gid);
     check($_POST['price'] >= 0, "Invalid price", "sellgood.php?gid=" . $gid);
-    check(strtotime($_POST['begin']) >= strtotime(now()), "Cannot begin in the past", "sellgood.php?gid=" . $gid);
-    check($_POST['end'] == '' || strtotime($_POST['end']) > strtotime($_POST['begin']), "Must end after you begin", "sellgood.php?gid=" . $gid);
+    $begin = $_POST['begin'];
+    $end = $_POST['end'];
+    try {
+        $enddate = new DateTime($end);
+        $begindate = new DateTime($begin);
+        $nowdate = new DateTime(now());
+        check($begindate->format('Ymd') == $begin, "Invalid time format for begin", "sellgood.php?gid=" . $gid);
+        check($begindate >= $nowdate, "Cannot begin in the past", "sellgood.php?gid=" . $gid);
+        check($end == '' || $enddate->format('Ymd') == $end, "Invalid time format for end", "sellgood.php?gid=" . $gid);
+        check($end == '' || $enddate > $begindate, "Must end after you begin", "sellgood.php?gid=" . $gid);
+    } catch (Exception $e) {
+        check(0, "Invalid date format", "sellgood.php?gid=" . $gid);
+    }
 
     $conn = db_connect();
     $stmt = db_bind_exe($conn, 'insert into contracts (userid, gid, cid, price, qty, begin, end) values (:userid, :gid, cid_seq.nextval, :price, :qty, TO_DATE(:begin, \'YYYYMMDD\'), TO_DATE(:end, \'YYYYMMDD\'))',

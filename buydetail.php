@@ -10,6 +10,7 @@ $gid = get_arg('gid');
 $qty = post_arg('qty');
 
 check($qty > 0, 'Invalid quantity', 'buygood.php?id=' . $gid);
+check($qty == intval($qty), 'Only complete items can be bought.', 'buygood.php?id=' . $gid);
 
 include_once 'conn.php';
 $conn = db_connect();
