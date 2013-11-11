@@ -71,6 +71,7 @@ print_product_info($gid);
 
 } else {
 
+    check(is_numeric($_POST['rating']) && $_POST['rating'] == intval($_POST['rating']), "Invalid rating", "dashboard.php");
     check($_POST['rating'] >= 1 && $_POST['rating'] <= 5, "Invalid rating", "dashboard.php");
     check($_POST['content'] != '', "Comment cannot be empty", "newcmt.php?gid=" . $gid);
     $conn = db_connect();
