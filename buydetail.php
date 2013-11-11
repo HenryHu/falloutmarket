@@ -9,6 +9,7 @@ $cid = get_arg('cid');
 $gid = get_arg('gid');
 $qty = post_arg('qty');
 
+check(is_numeric($qty), 'Invalid quantity', 'buygood.php?id=' . $gid);
 check($qty > 0, 'Invalid quantity', 'buygood.php?id=' . $gid);
 check($qty == intval($qty), 'Only complete items can be bought.', 'buygood.php?id=' . $gid);
 

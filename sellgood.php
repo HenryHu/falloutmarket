@@ -65,9 +65,13 @@ print_product_info($gid);
 
 } else {
     $qty = $_POST['qty'];
+    check(is_numeric($qty), "Invalid quantity", "sellgood.php?gid=" . $gid);
     check($qty > 0, "Invalid quantity", "sellgood.php?gid=" . $gid);
     check($qty == intval($qty), "Only complete items can be sold.", "sellgood.php?gid=" . $gid);
-    check($_POST['price'] >= 0, "Invalid price", "sellgood.php?gid=" . $gid);
+    $price = $_POST['price'];
+    check(is_numeric($price), "Invalid price.", "sellgood.php?gid=" . $gid);
+    $price = floatval($price);
+    check($price >= 0, "Invalid price", "sellgood.php?gid=" . $gid);
     $begin = $_POST['begin'];
     $end = $_POST['end'];
     try {
@@ -84,7 +88,7 @@ print_product_info($gid);
 
     $conn = db_connect();
     $stmt = db_bind_exe($conn, 'insert into contracts (userid, gid, cid, price, qty, begin, end) values (:userid, :gid, cid_seq.nextval, :price, :qty, TO_DATE(:begin, \'YYYYMMDD\'), TO_DATE(:end, \'YYYYMMDD\'))',
-        array('userid' => session_userid(), 'gid' => $gid, 'price' => $_POST['price'], 'now' => now(), 'qty' => $_POST['qty'], 'begin' => $_POST['begin'], 'end' => $_POST['end']));
+        array('userid' => session_userid(), 'gid' => $gid, 'price' => $price, 'now' => now(), 'qty' => $qty, 'begin' => $begin, 'end' => $end));
     db_close($conn);
 
     echo '<h3>Contract created.</h3>';
